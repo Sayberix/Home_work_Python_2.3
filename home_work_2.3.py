@@ -1,20 +1,24 @@
-# 4. Напишите программу, которая будет преобразовывать десятичное число в двоичное.
+# 5. Задайте число. Составьте список чисел Фибоначчи, в том числе для отрицательных индексов.
 
 # Пример:
-# 45 -> 101101
-# 3 -> 11
-# 2 -> 10
+# - для k = 8 список будет выглядеть так: [-21 ,13, -8, 5, −3, 2, −1, 1, 0, 1, 1, 2, 3, 5, 8, 13, 21]
 
-def conversion_binary(f_number: int) -> str:
-    resault = ''
-    while f_number != 0:
-        if f_number % 2 == 0:
-            f_number /= 2
-            resault += '0'
-        else:
-            f_number = (f_number - 1) / 2
-            resault += '1'
-    return resault
+def fibo(n):
+    if n>=0:
+       idx = range(n+1)
+       x = [0,1]
+       for k in idx[2:]:
+           x.append(x[k-1] + x[k-2]) 
+       return x[n]
+    else:
+       n=-(n-1)
+       idx = range(n+1)
+       x = [1,0]
+       for k in idx[2:]:
+           x.append(x[k-2] - x[k-1]) 
+       x.reverse()
+    return x[0]
 
-number = int(input('введите число в десятичной системе: '))
-print('число -',number,'в двоичной системе равно:',conversion_binary(number))
+# диапазон в котором необходимо найти числа фибоначчи
+for i in range(-5,3):
+   print(i,fibo(i))
